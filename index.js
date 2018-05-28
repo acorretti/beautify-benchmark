@@ -58,15 +58,11 @@ function log(options) {
   var reset      = options.reset || true
     , tolerances = options.tolerances || { pass: .95, mid: .80 }
 
-  console.log('\n')
-
   for (var i = 0; i < exports.store.length; i++) {
     logBench(exports.store[i], tolerances)
   }
 
   if (options.reset === undefined || options.reset === true) exports.reset()
-
-  console.log('')
 }
 
 function reset() {
