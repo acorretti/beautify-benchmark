@@ -22,7 +22,7 @@ var name_maxlen = 0
     , 'green': 32
   }
 
-function add(bench) {
+function add(bench, disableLog) {
   exports.store.push(bench)
 
   var len = (bench.name || (Number.isNaN(id) ? id : '<Test #' + id + '>')).length
@@ -32,11 +32,13 @@ function add(bench) {
   ops_arr.push(ops)
   ops_top = Math.max.apply(Math, ops_arr);
 
-  process.stdout.write('  '
-    + color('pending', (++exports.numCompleted))
-    + ' test'
-    + (exports.numCompleted > 1 ? 's' : '')
-    + ' completed.\u000D')
+  if (!disableLog) {
+    process.stdout.write('  '
+      + color('pending', (++exports.numCompleted))
+      + ' test'
+      + (exports.numCompleted > 1 ? 's' : '')
+      + ' completed.\u000D')
+  }
 }
 
 function getPercent(name) {
