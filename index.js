@@ -22,8 +22,6 @@ var name_maxlen = 0
     , 'green': 32
   }
 
-console.log('')
-
 function add(bench) {
   exports.store.push(bench)
 
