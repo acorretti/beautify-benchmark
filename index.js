@@ -138,9 +138,14 @@ function join(object) {
     , length = (object = Object(object)).length
     , arrayLike = length === length >>> 0
 
-  for (key in object) {
-    var value = object[key]
-    result.push(arrayLike ? value : key + ': ' + value)
+  if (object instanceof Error) {
+    result.push(object.message);
+  }
+  else {
+    for (key in object) {
+      var value = object[key]
+      result.push(arrayLike ? value : key + ': ' + value)
+    }
   }
   return result.join(',')
 }
